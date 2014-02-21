@@ -31,13 +31,43 @@
         function test() {
             window.location.replace('#mainPage', 'flip', true, true);
         }
+        function Load() {
+            $.mobile.loading('show', {
+                text: "",
+                theme: 'b',
+                textVisible: true
+            });
+        }
 
+        function UnLoad() {
+            $.mobile.loading('hide');
+        } // Unload
 
 
         function ApproveBTN() {
+            Load();
             var name = $('#name').val();
-            var number = $('#number').val();
-            window.location.replace('#ThanksPage', 'flip', true, true);
+            var amount = $('#amount').val();
+
+            $.ajax({
+                type: "GET",
+                url: "InsertGuest.aspx",
+                // url: "http://proj.ruppin.ac.il/igroup29/test2/InsertGuest.aspx",
+                data:
+                     { 'name': name, 'amount': amount },
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: function (res) {
+                    UnLoad();
+                    window.location.replace('#ThanksPage', 'flip', true, true);
+                }, // success
+                error: function (error) {
+                    alert("error-InsertProduct.aspx");
+                    UnLoad();
+                } //error
+            });   // ajax
+
+          
         }
     </script>
     
@@ -102,12 +132,12 @@
                 נשמח לראותכם בלה בלה בלה בלה
             </p>
         </div>
-        <div data-role="content" data-theme="e" style="height: 50% ;text-align:right">
+        <div data-role="content" data-theme="e" style="height: 50% ;text-align:right"  dir="rtl">
             <div data-role="controlgroup">
-                 <span style="font-size:15pt"> :שם</span>
+                 <span style="font-size:15pt"> שם:</span>
                 <input type="text" name="name" id="name" value="" />
-                 <span style="font-size:15pt"> :מספר מגיעים</span>
-               <input type="number" name="number" id="number" value="" />
+                 <span style="font-size:15pt"> מספר מגיעים:</span>
+               <input type="number" name="number" id="amount" value="" />
                 <br /><br />
                 <a href="#pageIndex" data-role="button" onclick="ApproveBTN(this)">אישור</a>
 
