@@ -44,15 +44,20 @@
         } // Unload
 
 
-        function ApproveBTN() {
+        function ApproveBTN(approve) {
             Load();
-            var name = $('#name').val();
-            var amount = $('#amount').val();
-
+             name = $('#name').val();
+             if (approve) {
+                 amount = $('#amount').val();
+                 name = $('#name').val();
+             }
+             else {
+                 amount = 0;
+                 name = $('#name1').val();
+             }
             $.ajax({
                 type: "GET",
                 url: "InsertGuest.aspx",
-                // url: "http://proj.ruppin.ac.il/igroup29/test2/InsertGuest.aspx",
                 data:
                      { 'name': name, 'amount': amount },
                 contentType: "application/json; charset=utf-8",
@@ -72,94 +77,117 @@
     </script>
     
 </head>
-<body  >
-<!-------------------------------------------------- /index ------------------------------------------------------------>
-    <div data-role="page"  data-theme="e" id="index">
+<body>
+    <!-------------------------------------------------- /index ------------------------------------------------------------>
+    <div data-role="page" data-theme="e" id="index">
 
-	<div data-role="header" data-theme="e" data-position="fixed"
-            style="  text-align:center">
-        <span style="font-size:20pt">נירן ורותם מתחתנים</span>
-	</div>
-    <img src ="images/niranAndRotem.jpg" id="BGPIC"/>
-
-        <div data-role="footer"  data-theme="e" style="text-align: center" data-position="fixed">
-           
-           <span style="font-size:20pt">22.6.2014</span>
+        <div data-role="header" data-theme="e" data-position="fixed"
+            style="text-align: center">
+            <span style="font-size: 20pt">נירן ורותם מתחתנים</span>
         </div>
-</div>
+        <img src="images/niranAndRotem.jpg" id="BGPIC" />
+
+        <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
+
+            <span style="font-size: 20pt">22.6.2014</span>
+        </div>
+    </div>
 
 
-<!-------------------------------------------------- /mainPage ------------------------------------------------------------>
+    <!-------------------------------------------------- /mainPage ------------------------------------------------------------>
     <div data-role="page" data-theme="c" id="mainPage">
 
-	<div data-role="header" data-theme="e" data-position="fixed"
-            style="  text-align:center">
-        <span style="font-size:20pt">נירן ורותם מתחתנים</span>
-	</div>
-      
-        <div data-role="content" id="contentId" style ="text-align:right">
-             <span style="font-size:15pt"> שמחים להזמין אותכם בלה בלה בלה בלה  בלה בלה בלה בלה בלה בלה בלה בלה בלה</span>
+        <div data-role="header" data-theme="e" data-position="fixed"
+            style="text-align: center">
+            <span style="font-size: 20pt">נירן ורותם מתחתנים</span>
+        </div>
 
-            <br /> <br />
+        <div data-role="content" id="contentId" style="text-align: right">
+            <span style="font-size: 15pt">שמחים להזמין אותכם בלה בלה בלה בלה  בלה בלה בלה בלה בלה בלה בלה בלה בלה</span>
+
+            <br />
+            <br />
             <div data-role="fieldcontain" align="Center" style="border-bottom-style: none">
-                <span style="font-size: 15pt ">?מגיעים</span>
-                <br /> <br /><br />
-                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false" >
+                <span style="font-size: 15pt">?מגיעים</span>
+                <br />
+                <br />
+                <br />
+                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false">
 
-                    <a href="#FinishShoppingPage" data-role="button" data-icon="minus" data-rel="dialog"
-                data-transition="flip">לא</a>                 
+                    <a href="#NotApprovePage" data-role="button" data-icon="minus" data-rel="dialog"
+                        data-transition="flip">לא</a>
                     <a href="#ApprovePage" data-role="button" data-icon="check" data-rel="dialog"
-                data-transition="flip">כן</a>
-      
+                        data-transition="flip">כן</a>
+
 
                 </fieldset>
             </div>
 
-            </div>
+        </div>
         <!-- /content -->
         <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
-           
-           <span style="font-size:20pt">22.6.2014</span>
+
+            <span style="font-size: 20pt">22.6.2014</span>
         </div>
     </div>
 
 
 
-<!-------------------------------------------------- /ApprovePage ------------------------------------------------------------>
-       <div data-role="page" data-theme="e" id="ApprovePage" style="height: 100%;">
+    <!-------------------------------------------------- /ApprovePage ------------------------------------------------------------>
+    <div data-role="page" data-theme="e" id="ApprovePage" style="height: 100%;">
         <div data-role="header" dir="rtl" style="height: 50%; text-align: center;">
             <p>
-                נשמח לראותכם בלה בלה בלה בלה
+                נשמח לראותכם בלה בלה בלה 
             </p>
         </div>
-        <div data-role="content" data-theme="e" style="height: 50% ;text-align:right"  dir="rtl">
+        <div data-role="content" data-theme="e" style="height: 50%; text-align: right" dir="rtl">
             <div data-role="controlgroup">
-                 <span style="font-size:15pt"> שם:</span>
+                <span style="font-size: 15pt">שם:</span>
                 <input type="text" name="name" id="name" value="" />
-                 <span style="font-size:15pt"> מספר מגיעים:</span>
-               <input type="number" name="number" id="amount" value="" />
-                <br /><br />
-                <a href="#pageIndex" data-role="button" onclick="ApproveBTN(this)">אישור</a>
+                <span style="font-size: 15pt">מספר מגיעים:</span>
+                <input type="number" name="number" id="amount" value="" />
+                <br />
+                <br />
+                <a href="#pageIndex" data-role="button" onclick="ApproveBTN(1)">אישור</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------- /NotApprovePage ------------------------------------------------------------>
+    <div data-role="page" data-theme="e" id="NotApprovePage" style="height: 100%;">
+        <div data-role="header" dir="rtl" style="height: 50%; text-align: center;">
+            <p>
+                נתראה בשמחות 
+            </p>
+        </div>
+        <div data-role="content" data-theme="e" style="height: 50%; text-align: right" dir="rtl">
+            <div data-role="controlgroup">
+                <span style="font-size: 15pt">שם:</span>
+                <input type="text" name="name" id="name1" value="" />
+                <br />
+                <br />
+                <a href="#pageIndex" data-role="button" onclick="ApproveBTN(0)">אישור</a>
 
             </div>
         </div>
     </div>
 
 
-<!-------------------------------------------------- /ThanksPage ------------------------------------------------------------>
-    <div data-role="page"  data-theme="e" id="ThanksPage">
+    <!-------------------------------------------------- /ThanksPage ------------------------------------------------------------>
+    <div data-role="page" data-theme="e" id="ThanksPage">
 
-	<div data-role="header" data-theme="e" data-position="fixed"
-            style="  text-align:center">
-        <span style="font-size:20pt">נירן ורותם מתחתנים</span>
-	</div>
-    <img src ="images/thanks.jpg" id="Img1"/>
-
-        <div data-role="footer"  data-theme="e" style="text-align: center" data-position="fixed">
-           
-           <span style="font-size:20pt">22.6.2014</span>
+        <div data-role="header" data-theme="e" data-position="fixed"
+            style="text-align: center">
+            <span style="font-size: 20pt">נירן ורותם מתחתנים</span>
         </div>
-</div>
+        <img src="images/thanks.jpg" id="Img1" />
+
+        <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
+
+            <span style="font-size: 20pt">22.6.2014</span>
+        </div>
+    </div>
 
 </body>
 </html>
