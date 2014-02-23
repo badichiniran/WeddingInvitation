@@ -4,9 +4,13 @@
 <head>
     <title> נירן ורותם מתחתנים</title>
     <style type="text/css">
-       
-       
-        #BGPIC { width:100%; height:500px;}
+
+        @media screen and (max-width: 640px), screen and (max-height: 960px) {
+              #BGPIC { width:100px; height:100px;}
+             
+        }
+        
+        #thanksPic { width:100%; height:500px;}   
         #footer_div {text-align:center}
        
     
@@ -20,41 +24,46 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
  <script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
 
-<!--    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>-->
-
-    
+   
     <script type="text/javascript" charset="utf-8">
 
-        setTimeout("test()", 1000);
+        setTimeout("test()", 6000);
         function test() {
             window.location.replace('#mainPage', 'flip', true, true);
         }
         function Load() {
             $.mobile.loading('show', {
-                text: "",
+                text: "אנא המתן",
                 theme: 'b',
                 textVisible: true
             });
         }
-
         function UnLoad() {
             $.mobile.loading('hide');
         } // Unload
-
-
         function ApproveBTN(approve) {
-            Load();
-             name = $('#name').val();
+                                         
              if (approve) {
                  amount = $('#amount').val();
                  name = $('#name').val();
+                 if (name == '' || amount == '') {
+                     alert("נא להזין שם ומספר מגיעים");
+                     return;
+                 }
+                 if (amount <= 0 || amount > 9) {
+                     alert("נא הכנס מספר בין 1 ל 9");
+                     return;
+                 }
              }
              else {
-                 amount = 0;
+                 amount = -888 ;
                  name = $('#name1').val();
+                 if (name == '') {
+                     alert("נא להזין שם ");
+                     return;
+                 }  
              }
+             Load();
             $.ajax({
                 type: "GET",
                 url: "InsertGuest.aspx",
@@ -89,13 +98,13 @@
 
         <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
 
-            <span style="font-size: 20pt">22.6.2014</span>
+            <span style="font-size: 20pt">22.6</span>
         </div>
     </div>
 
 
     <!-------------------------------------------------- /mainPage ------------------------------------------------------------>
-    <div data-role="page" data-theme="c" id="mainPage"style="background-image:url('http://hdwallface.com/wp-content/uploads/2014/02/powerpoint-moving-backgrounds.jpg')">
+    <div data-role="page" data-theme="d" id="mainPage" >
 
         <div data-role="header" data-theme="e" data-position="fixed"
             style="text-align: center">
@@ -105,39 +114,40 @@
         <div data-role="content" id="contentId" style="text-align: center; " />
             <span style="font-size: 17pt"; >נשמח לראותכם בין אורחינו ולחגוג את נישואינו </span>
 
+        <br />
+        <br />
+        <div data-role="fieldcontain" align="Center" style="border-bottom-style: none">
+            <span style="font-size: 15pt">?מגיעים</span>
             <br />
             <br />
-            <div data-role="fieldcontain" align="Center" style="border-bottom-style: none">
-                <span style="font-size: 15pt">?מגיעים</span>
-                <br />
-                <br />
-                <br />
-                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false">
+            <br />
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false">
 
-                    <a href="#NotApprovePage" data-role="button" data-icon="minus" data-rel="dialog"
-                        data-transition="flip">לא</a>
-                    <a href="#ApprovePage" data-role="button" data-icon="check" data-rel="dialog"
-                        data-transition="flip">כן</a>
+                <a href="#NotApprovePage" data-role="button" data-icon="minus" data-rel="dialog"
+                    data-transition="flip">לא</a>
+                <a href="#ApprovePage" data-role="button" data-icon="check" data-rel="dialog"
+                    data-transition="flip">כן</a>
 
 
-                </fieldset>
-            </div>
-
+            </fieldset>
+        </div>
         </div>
         <!-- /content -->
         <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
 
-            <span style="font-size: 20pt">22.6.2014</span>
+            <span style="font-size: 20pt">22.6</span>
         </div>
     </div>
+
+    
 
 
 
     <!-------------------------------------------------- /ApprovePage ------------------------------------------------------------>
     <div data-role="page" data-theme="e" id="ApprovePage" style="height: 100%;">
         <div data-role="header" dir="rtl" style="height: 50%; text-align: center;">
-            <p>
-                נשמח לראותכם בלה בלה בלה 
+            <p  style="font-size: 10pt">
+                אנא הזינו את הפרטים הבאים:
             </p>
         </div>
         <div data-role="content" data-theme="e" style="height: 50%; text-align: right" dir="rtl">
@@ -157,8 +167,8 @@
     <!-------------------------------------------------- /NotApprovePage ------------------------------------------------------------>
     <div data-role="page" data-theme="e" id="NotApprovePage" style="height: 100%;">
         <div data-role="header" dir="rtl" style="height: 50%; text-align: center;">
-            <p>
-                נתראה בשמחות 
+            <p  style="font-size: 10pt">
+                אנא הזינו את שימכם
             </p>
         </div>
         <div data-role="content" data-theme="e" style="height: 50%; text-align: right" dir="rtl">
@@ -181,11 +191,11 @@
             style="text-align: center">
             <span style="font-size: 20pt">נירן ורותם מתחתנים</span>
         </div>
-        <img src="images/thanks.jpg" id="Img1" />
+        <img src="images/thanks.jpg" id="thanksPic" />
 
         <div data-role="footer" data-theme="e" style="text-align: center" data-position="fixed">
 
-            <span style="font-size: 20pt">22.6.2014</span>
+            <span style="font-size: 20pt">22.6</span>
         </div>
     </div>
 
