@@ -29,15 +29,12 @@
             <SortedDescendingCellStyle BackColor="#FCF6C0" />
             <SortedDescendingHeaderStyle BackColor="#820000" />
         </asp:GridView>
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
-            <LocalReport ReportPath="Report1.rdlc">
-                <DataSources>
-                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DataSet1" />
-                </DataSources>
-            </LocalReport>
-        </rsweb:ReportViewer>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetData" TypeName="igroup29_test1DataSetTableAdapters.GuestListTableAdapter"></asp:ObjectDataSource>
+
+     
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStr %>" SelectCommand="SELECT [Name], [Amount], [TimeStamp] FROM [GuestList] ORDER BY [TimeStamp] DESC"></asp:SqlDataSource>
+        
+
+        
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     </div>
     </form>
